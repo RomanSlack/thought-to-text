@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "source": "Jordan Watkins - i'd love to see AI try and recreate this",
+    "duration": 20.46,
+    "aspect": "4:3",
+    "resolution": [2880, 2160],
+    "fps": 23.976,
+    "edit": "beat-locked, every cut within 0.15s of a music onset",
+    "notes": "Times after 15.9s are read from 0.15s strips, accurate to about +-0.1s."
+  },
+  "slots": {
+    "QUESTION": "a lowercase rhetorical question the piece refuses to answer in words (orig: how do you communicate that you're going through a change?)",
+    "QUESTION_HOOK_WORDS": "first 1-3 words shown big in the opening (orig: how / do you)",
+    "QUESTION_HIGHLIGHT": "single word in the question that turns white (orig: you)",
+    "REBUTTAL": "short flat denial, no apostrophe (orig: you dont.)",
+    "SHOW_LINE": "the 'show, don't tell' line built word by word (orig: you just show it.)",
+    "OBJECTS": "12 pixel-art sprites that represent the subject's interests (orig: vinyl, skateboard, red book, camera, black cat, gold coin, game controller, cap, heart, cash, potted plant, clapperboard)",
+    "VALUE_1": "one-word value with a period (orig: action.)",
+    "VALUE_1_OBJECT": "sprite paired with VALUE_1 (orig: camera)",
+    "VALUE_1_ACCENT": "red accent shape (orig: 4-point spark)",
+    "VALUE_2": "orig: intention.",
+    "VALUE_2_OBJECT": "orig: red book",
+    "VALUE_2_ACCENT": "orig: red ribbon strip",
+    "VALUE_3": "orig: curiosity.",
+    "VALUE_3_OBJECT": "orig: vinyl",
+    "VALUE_3_ACCENT": "orig: red music notes",
+    "THESIS_LEAD": "line split around the hand, ending on a connective (orig: through ones / own ability to)",
+    "THESIS_WORD": "short uppercase word spelled one letter per cut, ideally 4 letters (orig: LOVE)",
+    "THESIS_OBJECTS": "one sprite per letter of THESIS_WORD (orig: heart, camera, book, vinyl)",
+    "FIGURE_HEAD": "live-action profile shot of the subject, rotoscoped",
+    "FIGURE_HAND": "live-action shot of a hand reaching up, rotoscoped"
+  },
+  "design_system": {
+    "palette": {
+      "paper": "#d9d9da",
+      "night": "#151515",
+      "signal_red": "#cd1f15",
+      "deep_red": "#a50e1d",
+      "thermal": ["#ca3218", "#d3631a", "#d89624", "#fff4dc"],
+      "ink_on_paper": "#3a2a28",
+      "text_on_dark": "#e6e6e6",
+      "accent_cyan_sparing": "#4fb6d8 (est.)"
+    },
+    "type": "one lowercase rounded geometric sans (Product Sans / Gilroy-like, inferred); words end in a period; caption cap height 0.035-0.05 H",
+    "texture": "heavy film grain everywhere, paper fiber on light scenes, soft vignettes, slight bloom on whites",
+    "sprites": "chunky outlined pixel art, rendered as 3D-extruded objects that can tumble",
+    "figures": "live-action matte filled with a heat-map gradient map (red edge, orange, yellow, white core) on black",
+    "layout": "everything on the horizontal center line, y about 0.5"
+  },
+  "component_library": {
+    "paper_type_canvas": {
+      "used_by": ["S00", "S01", "S13"],
+      "elements": [
+        {"role": "background", "style": "off-white paper, grain, vignette"},
+        {"role": "sentence", "box": [0.0, 0.47, 0.98, 0.52], "style": "ink_on_paper, lowercase sans", "motion": "word-by-word type-on"},
+        {"role": "pen_layer", "style": "thin monoline handwriting/scribbles", "motion": "stroke draw-on ~0.2s"},
+        {"role": "guides", "style": "red dashed cap/baseline guides, dotted selection box with handles", "motion": "pop on/off"}
+      ]
+    },
+    "thermal_figure_caption": {
+      "used_by": ["S02", "S10a", "S10b"],
+      "elements": [
+        {"role": "background", "style": "night + grain", "motion": "ramps to mauve then paper in the final ~0.5s"},
+        {"role": "figure", "box_head": [0.45, 0.15, 0.95, 1.0], "box_hand": [0.38, 0.33, 0.68, 1.0], "style": "thermal gradient fill", "motion": "resolves from blurred purple/red blob ~0.3s"},
+        {"role": "caption_left", "box": [0.14, 0.47, 0.34, 0.52], "style": "text_on_dark, faint glow", "motion": "type-on with block cursor"},
+        {"role": "caption_right", "box": [0.65, 0.47, 0.81, 0.52], "style": "same", "motion": "same"},
+        {"role": "orbit_line", "style": "thin white glowing ellipse around figure", "motion": "draw-on ~0.3s"}
+      ]
+    },
+    "object_word_card": {
+      "used_by": ["S04", "S06", "S08"],
+      "elements": [
+        {"role": "background", "style": "night + grain"},
+        {"role": "accent", "style": "signal_red shape behind the object", "motion": "grows/pops"},
+        {"role": "object", "box": [0.10, 0.22, 0.47, 0.63], "style": "large 3D pixel sprite", "motion": "3D tumble, can flip edge-on"},
+        {"role": "word", "box": [0.58, 0.45, 0.83, 0.52], "cap_height": 0.05, "style": "text_on_dark lowercase with period", "motion": "white block cursor resolves into word ~0.15s"},
+        {"role": "caret", "box": [0.915, 0.44, 0.925, 0.53], "style": "thin white bar", "motion": "blink"}
+      ]
+    },
+    "object_strip": {
+      "used_by": ["S05", "S07"],
+      "elements": [
+        {"role": "background", "style": "paper"},
+        {"role": "row", "box": [0.10, 0.30, 0.95, 0.70], "style": "4-5 overlapping large sprites", "motion": "slide left, conveyor"}
+      ]
+    },
+    "object_ring": {
+      "used_by": ["S03", "S09"],
+      "elements": [
+        {"role": "background", "style": "paper + vignette"},
+        {"role": "ring", "box": [0.10, 0.10, 0.90, 0.90], "style": "12 sprites in an oval", "motion": "rotate; sequential gold-starburst flash pops ~0.15s; radial explode"},
+        {"role": "ink", "style": "black spray-paint blobs and brush swooshes", "motion": "splat onto sprites, turning them to black silhouettes"}
+      ]
+    },
+    "letter_spellout": {
+      "used_by": ["S10d", "S11", "S11b", "S12"],
+      "elements": [
+        {"role": "background", "style": "changes every cut: paper, gray vignette, night, night + red glow, full signal_red, dark red"},
+        {"role": "letters", "x_positions": [0.09, 0.36, 0.63, 0.90], "y": 0.5, "cap_height": 0.045, "style": "white uppercase; newest letter flashes cyan", "motion": "one letter added per cut"},
+        {"role": "object", "box": [0.40, 0.34, 0.60, 0.62], "style": "one sprite per letter", "motion": "swap per cut"}
+      ]
+    }
+  },
+  "beats": [
+    {"id": "S00", "start": 0.0, "duration": 2.0, "structural": true, "role": "hook / question build", "archetype": "paper_type_canvas",
+     "copy": "{QUESTION_HOOK_WORDS} ... {QUESTION} (partial)",
+     "visual": "handwritten hook word, snaps to huge bold type between red guides, redaction bar reveals next words, collapses to small text in a selection box, pen scribbles, then sentence types on",
+     "motion": "~0.15s typographic swaps for the first 0.9s, then calm word-by-word type-on",
+     "transition_out": "hard cut on onset"},
+    {"id": "S01", "start": 2.0, "duration": 1.8, "structural": true, "role": "question lands", "archetype": "paper_type_canvas",
+     "copy": "{QUESTION}",
+     "visual": "cyan 4-point flare bursts in with red brush streaks; a few small OBJECTS pop in; flare settles to blue wedge at left; vignette closes to warm red-orange glow; {QUESTION_HIGHLIGHT} turns white",
+     "motion": "flare burst ~0.15s, then ~1.5s vignette close and warm color shift",
+     "transition_out": "hard cut to black"},
+    {"id": "S02", "start": 3.8, "duration": 2.4, "structural": true, "role": "rebuttal", "archetype": "thermal_figure_caption",
+     "copy": "{REBUTTAL} -> {SHOW_LINE} (type-on, replaces)",
+     "visual": "FIGURE_HEAD profile in thermal fill, right half; caption left; white orbit line around head",
+     "motion": "blob-to-thermal resolve 0.3s; end: background ramps black to mauve to paper, figure inverts dark",
+     "transition_out": "flash to paper, cut"},
+    {"id": "S03", "start": 6.2, "duration": 2.1, "structural": true, "role": "show: the inventory", "archetype": "object_ring",
+     "copy": null,
+     "visual": "all 12 OBJECTS in a rotating oval ring",
+     "motion": "assemble from blur, rotate, sequential gold flash pops, collapse sideways in the final 0.2s",
+     "transition_out": "hard cut on onset"},
+    {"id": "S04", "start": 8.3, "duration": 0.9, "structural": true, "role": "value 1", "archetype": "object_word_card",
+     "copy": "{VALUE_1}", "visual": "{VALUE_1_OBJECT} + {VALUE_1_ACCENT}",
+     "motion": "block-cursor type-on; object 3D tumble", "transition_out": "hard cut, dark to light"},
+    {"id": "S05", "start": 9.2, "duration": 0.7, "structural": false, "role": "breather strip", "archetype": "object_strip",
+     "copy": null, "visual": "row of 4 OBJECTS", "motion": "slide left", "transition_out": "hard cut, light to dark"},
+    {"id": "S06", "start": 9.9, "duration": 0.7, "structural": true, "role": "value 2", "archetype": "object_word_card",
+     "copy": "{VALUE_2}", "visual": "{VALUE_2_OBJECT} + {VALUE_2_ACCENT}",
+     "motion": "block-cursor type-on; accent grows", "transition_out": "hard cut, dark to light"},
+    {"id": "S07", "start": 10.6, "duration": 0.5, "structural": false, "role": "breather strip", "archetype": "object_strip",
+     "copy": null, "visual": "row of 5 OBJECTS", "motion": "slide left", "transition_out": "hard cut, light to dark"},
+    {"id": "S08", "start": 11.1, "duration": 0.8, "structural": true, "role": "value 3", "archetype": "object_word_card",
+     "copy": "{VALUE_3}", "visual": "{VALUE_3_OBJECT} + {VALUE_3_ACCENT}; red dotted ring flash at start",
+     "motion": "block-cursor type-on; accents pop in staggered", "transition_out": "hard cut, dark to light"},
+    {"id": "S09", "start": 11.9, "duration": 1.9, "structural": false, "role": "scatter / dissolve", "archetype": "object_ring",
+     "copy": "first word of {THESIS_LEAD} under a redaction bar at the end",
+     "visual": "ring reforms with motion blur, explodes outward, spray-paint blobs blacken sprites one by one",
+     "motion": "spin into radial scatter ~0.3s; ink hits on onsets",
+     "transition_out": "black brush-stroke swirl wipe"},
+    {"id": "S10a", "start": 13.8, "duration": 0.4, "structural": true, "role": "thesis setup", "archetype": "thermal_figure_caption",
+     "copy": "{THESIS_LEAD} (first words)", "visual": "remaining sprites cluster, then FIGURE_HAND resolves",
+     "motion": "blob-to-thermal resolve", "transition_out": "within shot"},
+    {"id": "S10b", "start": 14.2, "duration": 1.7, "structural": true, "role": "thesis line", "archetype": "thermal_figure_caption",
+     "copy": "{THESIS_LEAD}", "visual": "thermal hand reaching up at center, caption split around it",
+     "motion": "type-on; drifting sparks; end: background warms to mauve, hand closes",
+     "transition_out": "hard cut"},
+    {"id": "S10c", "start": 15.9, "duration": 0.15, "structural": false, "role": "flick", "archetype": "letter_spellout",
+     "copy": null, "visual": "small red dart flies to center on paper", "motion": "flick", "transition_out": "cut"},
+    {"id": "S10d", "start": 16.05, "duration": 0.3, "structural": true, "role": "letter 1", "archetype": "letter_spellout",
+     "copy": "{THESIS_WORD}[0]", "visual": "{THESIS_OBJECTS}[0], paper then gray vignette", "motion": "letter appears", "transition_out": "cut on onset"},
+    {"id": "S11", "start": 16.35, "duration": 0.3, "structural": true, "role": "letter 2", "archetype": "letter_spellout",
+     "copy": "{THESIS_WORD}[0..1]", "visual": "{THESIS_OBJECTS}[1], night with red glow pulse", "motion": "new letter flashes cyan", "transition_out": "cut on onset"},
+    {"id": "S11b", "start": 16.65, "duration": 0.3, "structural": true, "role": "letter 3", "archetype": "letter_spellout",
+     "copy": "{THESIS_WORD}[0..2]", "visual": "{THESIS_OBJECTS}[2], full red frame to dark red", "motion": "color flash", "transition_out": "cut on onset"},
+    {"id": "S12", "start": 16.95, "duration": 0.25, "structural": true, "role": "letter 4 / word complete", "archetype": "letter_spellout",
+     "copy": "{THESIS_WORD}", "visual": "{THESIS_OBJECTS}[3], night", "motion": "hold", "transition_out": "blurred black brush-stroke wipe"},
+    {"id": "S13", "start": 17.2, "duration": 3.26, "structural": true, "role": "coda", "archetype": "paper_type_canvas",
+     "copy": "{THESIS_WORD} letters, scattered",
+     "visual": "letters of THESIS_WORD plus small dots scattered and rotated on paper; red pen scribble loops circle them",
+     "motion": "slow drift/rotate toward upright ~3s; red loops draw in ~0.15s bursts on onsets; ~1.5x push-in in final 0.2s; music near silent",
+     "transition_out": "end"}
+  ],
+  "pacing_rules": [
+    "Keep the curve: ~2s beats for the opening, 0.5-0.9s alternating dark/light in the middle, 0.15-0.3s per letter for the thesis word, then a 3s+ near-silent coda.",
+    "Non-structural beats (S05, S07, S09, S10c) can be dropped for a shorter cut; do not speed up the others instead.",
+    "Every cut sits on a music onset."
+  ]
+}

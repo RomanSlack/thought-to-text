@@ -1,0 +1,8 @@
+node_modules/
+film/out/
+.env
+*.osc
+score/music.wav
+score/mix.wav
+score/vo.wav
+__pycache__/
