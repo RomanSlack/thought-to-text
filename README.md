@@ -7,7 +7,7 @@ A 20-second film about brain-computer interfaces, made by **decompiling** someon
 > *through signal. intention. language.*
 > *through ones own mind, straight to* **T E X T**
 
-**[Watch it: `film/out` render, 1920x1440, 20.5s](#run-it)**
+![thought-to-text](docs/hero.gif)
 
 The reference was Jordan Watkins' *"i'd love to see AI try and recreate this"*: a kinetic poem built from pixel-art objects, thermal silhouettes, typewriter cards and a score that goes quiet in exactly the right places. This repo is the answer to that caption.
 
